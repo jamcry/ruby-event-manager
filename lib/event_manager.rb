@@ -16,8 +16,10 @@ def parse_datestring(date_string)
 end
 
 def clean_phone(phone_number)
-  number = phone_number.gsub(/\D/, '') # delete non digit chars
+  # delete non digit chars
+  number = phone_number.gsub(/\D/, '')
   len = number.length
+
   if len < 10
     number = nil
   elsif len == 10
@@ -31,6 +33,7 @@ def clean_phone(phone_number)
   if number
     number = number[0..2] + "-" + number[3..5] + "-" + number[6..]
   end
+
   number
 end
 
@@ -46,6 +49,7 @@ def legislators_by_zipcode(zip)
   rescue
     "You can find your representatives by visiting www.commoncause.org/take-action/find-elected-officials"
   end
+
 end
 
 def save_thank_you_lettters(id, form_letter)
@@ -65,7 +69,8 @@ end
 def find_best_day(dts)
   days = Hash.new(0)
   dts.each do |date|
-    day_of_week = date.strftime("%A") # Get the name of the day
+    # Get the name of the day
+    day_of_week = date.strftime("%A")
     days[day_of_week] += 1
   end
 
